@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva de Veículos</title>
-    <style>
-        /* Estilo do formulário (sem alterações) */
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <script src="js/firebase-config.js" defer></script>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -42,85 +41,5 @@
             Veículo reservado com sucesso!
         </div>
     </div>
-
-    <script>
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBPah1p3IHaKApNWfIVRR0OKPCazayUYRU",
-            authDomain: "versao7.firebaseapp.com",
-            projectId: "versao7",
-            storageBucket: "versao7.firebasestorage.app",
-            messagingSenderId: "881427416866",
-            appId: "1:881427416866:web:f74fef26907cdaa00c477b",
-            measurementId: "G-GENXF66MY8"
-        };
-
-        // Inicializar Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-
-        const vehicleTypeElement = document.getElementById('vehicleType');
-        const vehicleNameElement = document.getElementById('vehicleName');
-
-        const vehicles = {
-            Carro: ["estrada1", "estrada2", "estrada3"],
-            Moto: ["moto1", "moto2"]
-        };
-
-        vehicleTypeElement.addEventListener('change', function () {
-            const selectedType = this.value;
-
-            // Limpar a lista de veículos
-            vehicleNameElement.innerHTML = '<option value="">Selecione o veículo</option>';
-
-            // Preencher a lista com base no tipo selecionado
-            if (vehicles[selectedType]) {
-                vehicles[selectedType].forEach(vehicle => {
-                    const option = document.createElement('option');
-                    option.value = vehicle;
-                    option.textContent = vehicle;
-                    vehicleNameElement.appendChild(option);
-                });
-            }
-        });
-
-        document.getElementById('vehicleForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Obter os valores do formulário
-            const vehicleType = document.getElementById('vehicleType').value;
-            const vehicleName = document.getElementById('vehicleName').value;
-            const driver = document.getElementById('driver').value;
-
-            // Verificar se todos os campos estão preenchidos
-            if (!vehicleType || !vehicleName || !driver) {
-                alert('Por favor, preencha todos os campos.');
-                return;
-            }
-
-            // Enviar dados para o Firebase
-            const reservationData = {
-                tipoDeVeiculo: vehicleType,
-                veiculo: vehicleName,
-                equipe: driver,
-                dataHora: new Date().toISOString() // Registrar a data/hora da reserva
-            };
-
-            firebase.database().ref('reservas').push(reservationData)
-                .then(() => {
-                    // Exibir mensagem de sucesso
-                    const confirmationDiv = document.getElementById('confirmation');
-                    confirmationDiv.style.display = 'block';
-                    confirmationDiv.textContent = `O veículo ${vehicleName} com a ${driver} do tipo ${vehicleType} foi reservado com sucesso!`;
-
-                    // Limpar o formulário
-                    document.getElementById('vehicleForm').reset();
-                    vehicleNameElement.innerHTML = '<option value="">Selecione o veículo</option>';
-                })
-                .catch((error) => {
-                    alert('Erro ao reservar veículo: ' + error.message);
-                });
-        });
-    </script>
 </body>
 </html>
