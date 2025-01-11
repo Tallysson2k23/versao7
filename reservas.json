@@ -1,0 +1,17 @@
+{
+    "reservas": {
+      "id1": {
+        "tipoDeVeiculo": "Carro",
+        "veiculo": "estrada1",
+        "equipe": "EQUIPE 1: ROBSON E GABRIEL",
+        "dataHora": "2025-01-11T10:30:00Z"
+      },
+      "id2": {
+        "tipoDeVeiculo": "Moto",
+        "veiculo": "moto2",
+        "equipe": "EQUIPE 2: JEAN E RANIERE",
+        "dataHora": "2025-01-11T11:00:00Z"
+      }
+    }
+  }
+  
