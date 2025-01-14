@@ -39,6 +39,7 @@ function atualizarDisponibilidade(tipoVeiculo, nomeVeiculo) {
 document.getElementById('vehicleForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
+    
     // Obter valores do formulário
     const vehicleType = vehicleTypeElement.value;
     const vehicleName = vehicleNameElement.value;
