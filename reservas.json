@@ -1,17 +1,40 @@
 {
-    "reservas": {
-      "id1": {
-        "tipoDeVeiculo": "Carro",
-        "veiculo": "estrada1",
-        "equipe": "EQUIPE 1: ROBSON E GABRIEL",
-        "dataHora": "2025-01-11T10:30:00Z"
+  "reservas": {
+    "reserva_id_1": {
+      "tipoVeiculo": "Carro",
+      "nomeVeiculo": "Fusca",
+      "motorista": "EQUIPE 1: ROBSON E GABRIEL",
+      "dataReserva": "2025-01-14T10:30:00",
+      "status": "reservado"
+    },
+    "reserva_id_2": {
+      "tipoVeiculo": "Moto",
+      "nomeVeiculo": "Honda CB500",
+      "motorista": "EQUIPE 2: JEAN E RANIERE",
+      "dataReserva": "2025-01-14T11:00:00",
+      "status": "reservado"
+    },
+    "reserva_id_3": {
+      "tipoVeiculo": "Carro",
+      "nomeVeiculo": "Civic",
+      "motorista": "EQUIPE 5: NETO E ANDERSON",
+      "dataReserva": "2025-01-14T12:30:00",
+      "status": "disponível"
+    }
+  },
+  "veiculos": {
+    "Carro": {
+      "Fusca": {
+        "disponibilidade": true
       },
-      "id2": {
-        "tipoDeVeiculo": "Moto",
-        "veiculo": "moto2",
-        "equipe": "EQUIPE 2: JEAN E RANIERE",
-        "dataHora": "2025-01-11T11:00:00Z"
+      "Civic": {
+        "disponibilidade": true
+      }
+    },
+    "Moto": {
+      "Honda CB500": {
+        "disponibilidade": true
       }
     }
   }
-  
+}

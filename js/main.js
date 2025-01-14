@@ -24,6 +24,17 @@ vehicleTypeElement.addEventListener('change', function () {
     }
 });
 
+// Função para atualizar a disponibilidade do veículo no Firebase
+function atualizarDisponibilidade(tipoVeiculo, nomeVeiculo) {
+    const db = firebase.database();
+    const veiculosRef = db.ref(`veiculos/${tipoVeiculo}/${nomeVeiculo}`);
+
+    // Atualizar a disponibilidade para "false"
+    veiculosRef.update({
+        disponibilidade: false
+    });
+}
+
 // Formulário de envio
 document.getElementById('vehicleForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -50,6 +61,9 @@ document.getElementById('vehicleForm').addEventListener('submit', function (e) {
     // Enviar para o Firebase
     firebase.database().ref('reservas').push(reservationData)
         .then(() => {
+            // Atualizar a disponibilidade do veículo no Firebase
+            atualizarDisponibilidade(vehicleType, vehicleName);
+
             // Mostrar mensagem de sucesso
             const confirmationDiv = document.getElementById('confirmation');
             confirmationDiv.style.display = 'block';
